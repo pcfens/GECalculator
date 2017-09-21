@@ -29,10 +29,10 @@ public class GECalculatorServlet extends HttpServlet {
                 !request.getParameter("loanVal").equals("0") && request.getParameter("maturity") != null &&
                 !request.getParameter("maturity").equals("") && !request.getParameter("maturity").equals("0")){
             double loanVal = Double.valueOf(request.getParameter("loanVal"));
-            int maturity = Integer.valueOf(request.getParameter("maturity"));
+            double maturity = Double.valueOf(request.getParameter("maturity"));
 
             double interestRate = 0.05, discountRate = 0.1;
-            int gracePeriod = 0, repaymentsPerYear = 2, disbursementSpanInYears = 1, disbursementsPerYear = 1;
+            double gracePeriod = 0.0, repaymentsPerYear = 2.0, disbursementSpanInYears = 1.0, disbursementsPerYear = 1.0;
             boolean includeLifecycle = false;
 
             if(request.getParameter("interestRate") != null && !request.getParameter("interestRate").equals("")) {
@@ -42,16 +42,16 @@ public class GECalculatorServlet extends HttpServlet {
                 discountRate = Double.valueOf(request.getParameter("discountRate"));
             }
             if(request.getParameter("gracePeriod") != null && !request.getParameter("gracePeriod").equals("")) {
-                gracePeriod = Integer.valueOf(request.getParameter("gracePeriod"));
+                gracePeriod = Double.valueOf(request.getParameter("gracePeriod"));
             }
             if(request.getParameter("repaymentsPerYear") != null && !request.getParameter("repaymentsPerYear").equals("")) {
-                repaymentsPerYear = Integer.valueOf(request.getParameter("repaymentsPerYear"));
+                repaymentsPerYear = Double.valueOf(request.getParameter("repaymentsPerYear"));
             }
             if(request.getParameter("disbursementSpanInYears") != null && !request.getParameter("disbursementSpanInYears").equals("")) {
-                disbursementSpanInYears = Integer.valueOf(request.getParameter("disbursementSpanInYears"));
+                disbursementSpanInYears = Double.valueOf(request.getParameter("disbursementSpanInYears"));
             }
             if(request.getParameter("disbursementsPerYear") != null && !request.getParameter("disbursementsPerYear").equals("")) {
-                disbursementsPerYear = Integer.valueOf(request.getParameter("disbursementsPerYear"));
+                disbursementsPerYear = Double.valueOf(request.getParameter("disbursementsPerYear"));
             }
             if(request.getParameter("includeLifecycle") != null && !request.getParameter("includeLifecycle").equals("")){
                 includeLifecycle = Boolean.valueOf(request.getParameter("includeLifecycle"));

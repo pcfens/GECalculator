@@ -7,13 +7,14 @@ import java.util.List;
 
 public class GrantElementCalculator {
 
-    private double loanVal;
-    private double interestRate = 0.05;
-    private double discountRate = 0.1;
-    private int gracePeriod = 0;
-    private int maturity;
-    private int repaymentsPerYear = 2;
-    private int disbursementSpanInYears = 1, disbursementsPerYear = 1;
+    private double loanVal,
+            interestRate = 0.05,
+            discountRate = 0.1,
+            gracePeriod = 0,
+            maturity,
+            repaymentsPerYear = 2,
+            disbursementSpanInYears = 1,
+            disbursementsPerYear = 1;
     private boolean includeLifecycle = false;
 
     public static void main(String[] args) {
@@ -32,18 +33,18 @@ public class GrantElementCalculator {
      * The required parameters and their descriptions are as follows:
      *
      * @param loanVal - double: This value is required. It is the amount of the loan.
-     * @param maturity - int: This value is required. It is the time in years until the loan matures.
+     * @param maturity - double: This value is required. It is the time in years until the loan matures.
      * @param interestRate - double: The default value is 0.05. This is meant to be given as a decimal. ie - 25% = .25
      * @param discountRate - double: The default value is 0.1. This is meant to be given as a decimal. ie 3% = .03
-     * @param gracePeriod - int: The default value is 0. Meant to be in years.
-     * @param repaymentsPerYear - int: The default value is 2.
-     * @param disbursementSpanInYears - int: The default value is 1.
-     * @param disbursementsPerYear - int: The default value is 1.
+     * @param gracePeriod - double: The default value is 0. Meant to be in years.
+     * @param repaymentsPerYear - double: The default value is 2.
+     * @param disbursementSpanInYears - double: The default value is 1.
+     * @param disbursementsPerYear - double: The default value is 1.
      * @param includeLifecycle - boolean: The default value is false.
      */
-    public GrantElementCalculator(double loanVal, int maturity, double interestRate, double discountRate,
-                                  int gracePeriod, int repaymentsPerYear, int disbursementSpanInYears,
-                                  int disbursementsPerYear, boolean includeLifecycle){
+    public GrantElementCalculator(double loanVal, double maturity, double interestRate, double discountRate,
+                                  double gracePeriod, double repaymentsPerYear, double disbursementSpanInYears,
+                                  double disbursementsPerYear, boolean includeLifecycle){
 
         if(loanVal != 0){
             this.loanVal = loanVal;
@@ -66,8 +67,8 @@ public class GrantElementCalculator {
     }
 
     public Hashtable<String, String> calculateGrantElement(){
-        int gracePeriods = this.gracePeriod * this.repaymentsPerYear;
-        int repaymentPeriods = this.maturity * this.repaymentsPerYear;
+        double gracePeriods = this.gracePeriod * this.repaymentsPerYear;
+        double repaymentPeriods = this.maturity * this.repaymentsPerYear;
 
         List<Hashtable<String, Double>> loanLifecycle = new ArrayList<Hashtable<String, Double>>();
         Hashtable<String, Double> previousPeriod = new Hashtable<String, Double>();
@@ -143,9 +144,13 @@ public class GrantElementCalculator {
         result.put("grantElementPercent", fourDecimals.format(((pvDisbursement - pvRepayment)/pvDisbursement)));
         result.put("interestRate", twoDecimals.format(this.interestRate));
         result.put("discountRate", twoDecimals.format(this.discountRate));
-        result.put("maturity", String.valueOf(this.maturity));
-        result.put("gracePeriod", String.valueOf(this.gracePeriod));
-        result.put("repaymentsPerYear", String.valueOf(this.repaymentsPerYear));
+        result.put("maturity", twoDecimals.format(this.maturity));
+        result.put("gracePeriod", twoDecimals.format(this.gracePeriod));
+        result.put("repaymentsPerYear", twoDecimals.format(this.repaymentsPerYear));
+
+        if(this.includeLifecycle) {
+            result.put("lifecycle", loanLifecycle.toString());
+        }
 
         return result;
     }

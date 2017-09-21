@@ -18,6 +18,8 @@
 
 <p>http://keystone.aiddata.wm.edu:8080/GECalculator/calculate?loanVal=10000&maturity=10</p>
 
+<p>For reference, you can find the code for this calculation here: https://github.com/AidData-WM/GECalculator</p>
+
 <p>Happy Calculating!</p>
 
 <form action="calculate"  method="get">
@@ -25,10 +27,10 @@
     Maturity: <input type="number" name="maturity"><br>
     Interest Rate (as decimal): <input type="number" name="interestRate" value="0.05" step="0.01"><br>
     Discount Rate (as decimal): <input type="number" name="discountRate" value="0.1" step="0.01"><br>
-    Grace Period: <input type="number" name="gracePeriod" value="0"><br>
-    RepaymentsPerYear: <input type="number" name="repaymentsPerYear" value="2"><br>
-    Disbursement Space In Years: <input type="number" name="disbursementSpanInYears" value="1"><br>
-    Disbursements Per Year: <input type="number" name="disbursementsPerYear" value="1"><br>
+    Grace Period: <input type="number" name="gracePeriod" value="0.0"><br>
+    RepaymentsPerYear: <input type="number" name="repaymentsPerYear" value="2.0"><br>
+    Disbursement Space In Years: <input type="number" name="disbursementSpanInYears" value="1.0"><br>
+    Disbursements Per Year: <input type="number" name="disbursementsPerYear" value="1.0"><br>
     Include Lifecycle: <input type="checkbox" name="includeLifecycle" value="true"><br>
     <input type="submit" name="submit" value="Calculate Grant Element"><br>
 </form>
