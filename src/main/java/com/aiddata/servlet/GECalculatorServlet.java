@@ -19,7 +19,20 @@ public class GECalculatorServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        setAccessControlHeaders(response);
         genericHandler(request, response);
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse response)
+            throws ServletException, IOException {
+        setAccessControlHeaders(response);
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    private void setAccessControlHeaders(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Internal-Token, Workspace_Id");
     }
 
     private void genericHandler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
