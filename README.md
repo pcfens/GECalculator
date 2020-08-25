@@ -4,6 +4,13 @@
 
 Currently deployed at http://keystone.aiddata.wm.edu:8080/GECalculator/
 
+### Running in Docker Locally
+
+To build the container, use
+`docker build -t gecalculator .`
+
+To run the container on your local machine after use
+`docker run --rm -it -p8080:8080 gecalculator`
 
 ### Making a request
 
